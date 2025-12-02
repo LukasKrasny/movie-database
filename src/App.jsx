@@ -1,7 +1,5 @@
-import PopularMovies from "./components/PopularMovies"
-import FavoriteMovies from "./components/PopularMovies"
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import PopularMovies from "./pages/PopularMovies"
 
 const App = () => {
   return (
