@@ -7,7 +7,7 @@ export const fetchPopularMovies = async () => {
   const response = await axios.get(`${BASE_URL}/movie/popular`, {
     params: {
       api_key: API_KEY,
-      language: "cs-CZ",
+      language: "cs-CZ"
     },
   })
   return response.data.results
@@ -18,7 +18,7 @@ export const searchMovies = async (query) => {
     params: {
       api_key: API_KEY,
       query: query,
-      language: "cs-CZ",
+      language: "cs-CZ"
     },
   })
   return response.data.results
