@@ -10,7 +10,7 @@ const PopularMovies = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 p-10">
-      <h1 className="text-5xl m-5 text-center text-tawny-olive font-bold">
+      <h1 className="text-5xl m-10 text-center text-tawny-olive font-bold">
         Populární filmy
       </h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
