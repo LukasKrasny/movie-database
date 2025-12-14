@@ -1,21 +1,15 @@
-import useFetchMovies from "../hooks/useFetchMovies";
-import MovieCard from "../components/MovieCard";
-import Pagination from "../components/Pagination";
+import useFetchMovies from "../hooks/useFetchMovies"
+import MovieCard from "../components/MovieCard"
+import Pagination from "../components/Pagination"
+import PlaceholderCard from "../components/PlaceholderCard"
 import { Link } from "react-router-dom";
 
 const PopularMovies = () => {
-  const { 
-    movies, 
-    loading, 
-    error,
-    currentPage,
-    totalPages,
-    setCurrentPage
-   } = useFetchMovies()
+  const { movies, loading, error, currentPage, totalPages, setCurrentPage } =
+    useFetchMovies();
 
-  if (loading) return <div className="loading">Načítání...</div>;
-  if (error) return <div>Chyba: {error.message}</div>;
-
+  const ITEMS_PER_PAGE = 20; // Počet položek na stránku pro zobrazení placeholderů
+  
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 p-10">
       <h1 className="text-5xl m-10 text-center text-tawny-olive font-bold">
@@ -32,9 +26,17 @@ const PopularMovies = () => {
 
       {/* MŘÍŽKA S FILMY */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        {!loading &&
-          !error &&
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+        {loading ? (
+         [...Array(ITEMS_PER_PAGE)].map((_, index) => (
+            <PlaceholderCard key={index} />
+          ))
+        ) : error ? (
+          <div className="col-span-full text-center text-red-500 text-xl">
+            Chyba při načítání filmů: {error.message}
+          </div>
+        ) : (
+          movies.map((movie) => (<MovieCard key={movie.id} movie={movie} />))
+        )}
       </div>
 
       {totalPages > 1 && (
@@ -49,4 +51,3 @@ const PopularMovies = () => {
 };
 
 export default PopularMovies;
-
