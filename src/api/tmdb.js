@@ -3,12 +3,13 @@ import axios from "axios"
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
 const BASE_URL = "https://api.themoviedb.org/3"
 
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async (page = 1) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/popular`, {
       params: {
         api_key: API_KEY,
         language: "en-US",
+        page: page,
       },
     })
     
@@ -38,7 +39,11 @@ export const fetchPopularMovies = async () => {
       })
     )
     
-    return moviesWithCzechFallback
+    return {
+      ...response.data, 
+      results: moviesWithCzechFallback
+    }
+    
   } catch (error) {
     console.error("Error fetching popular movies:", error)
     throw error
