@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import PopularMovies from "./pages/PopularMovies"
 
 const App = () => {
@@ -6,10 +6,11 @@ const App = () => {
     <div className="bg-black-wash min-h-screen">
       <BrowserRouter>
         <Routes>
-          <Route path="/popular" element={<PopularMovies/>}/>
+          <Route path="/" element={<Navigate to="/popular" replace />} />
+          <Route path="/popular" element={<PopularMovies />} />
         </Routes>
       </BrowserRouter>
-    </div>   
-  )
+    </div>
+  );
 }
 export default App
