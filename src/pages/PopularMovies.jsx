@@ -2,6 +2,7 @@ import useFetchMovies from "../hooks/useFetchMovies"
 import MovieCard from "../components/MovieCard"
 import Pagination from "../components/Pagination"
 import PlaceholderCard from "../components/PlaceholderCard"
+import { use, useEffect } from "react"
 import { Link } from "react-router-dom";
 
 const PopularMovies = () => {
@@ -9,6 +10,10 @@ const PopularMovies = () => {
     useFetchMovies();
 
   const ITEMS_PER_PAGE = 20; // Počet položek na stránku pro zobrazení placeholderů
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
   
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 p-10">
