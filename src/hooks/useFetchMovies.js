@@ -16,7 +16,7 @@ const useFetchMovies = () => {
       try {
         const data = await fetchPopularMovies(currentPage)
         setMovies(data.results)
-        setTotalPages(data.total_pages)
+        setTotalPages(Math.min(data.total_pages, 500)) 
       } catch (err) {
         setError(err)
       } finally {
