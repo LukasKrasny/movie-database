@@ -66,3 +66,19 @@ export const searchMovies = async (query) => {
   })
   return response.data.results
 }
+
+export const fetchMovieDetails = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+        language: "cs-CZ",
+        append_to_response: "credits,similar,videos,images",
+      },
+    })
+    return response.data
+  } catch (error) {
+    console.error(`Error fetching details for movie ${id}:`, error)
+    throw error
+  }
+}
